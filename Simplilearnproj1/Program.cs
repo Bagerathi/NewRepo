@@ -12,7 +12,7 @@ namespace Simplilearnproj1
         static void Main(string[] args)
         {
             string filepath = @"D:\simplilearnproject1\test.txt";
-
+            ///// change
             //  string[] lines = File.ReadAllines(filepath);
             List<string> lines = new List<string>();
             lines = File.ReadAllLines(filepath).ToList();
