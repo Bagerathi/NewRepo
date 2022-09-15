@@ -1,0 +1,8 @@
+Created a Mini-Project where 
+•	User will be able to add a player to the team with details Player Id, Name, and Age.
+•	User will be able to remove a player from the team by passing the player’s Id.
+•	User will be able to get player details by passing the player’s Id.
+•	User will be able to get player details by passing the player’s name.
+•	User will be able to get all player details.
+•	User will not be able to add more than 11 players to the team.
+
