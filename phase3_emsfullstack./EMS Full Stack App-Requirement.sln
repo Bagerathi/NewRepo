@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS Full Stack App-Requirement", "EMS Full Stack App-Requirement\EMS Full Stack App-Requirement.csproj", "{C151D16C-24E9-4008-8A17-B4EE424FF2A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A1F7D090-74B6-4D86-B3B5-16F450B43598} = {A1F7D090-74B6-4D86-B3B5-16F450B43598}
+		{CA7916CF-0C65-426A-8FF0-879BD4704101} = {CA7916CF-0C65-426A-8FF0-879BD4704101}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_EMS", "DAL_EMS\DAL_EMS.csproj", "{A1F7D090-74B6-4D86-B3B5-16F450B43598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL_EMS", "BLL_EMS\BLL_EMS.csproj", "{CA7916CF-0C65-426A-8FF0-879BD4704101}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A1F7D090-74B6-4D86-B3B5-16F450B43598} = {A1F7D090-74B6-4D86-B3B5-16F450B43598}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C151D16C-24E9-4008-8A17-B4EE424FF2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C151D16C-24E9-4008-8A17-B4EE424FF2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C151D16C-24E9-4008-8A17-B4EE424FF2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C151D16C-24E9-4008-8A17-B4EE424FF2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F7D090-74B6-4D86-B3B5-16F450B43598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F7D090-74B6-4D86-B3B5-16F450B43598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F7D090-74B6-4D86-B3B5-16F450B43598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F7D090-74B6-4D86-B3B5-16F450B43598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA7916CF-0C65-426A-8FF0-879BD4704101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA7916CF-0C65-426A-8FF0-879BD4704101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA7916CF-0C65-426A-8FF0-879BD4704101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA7916CF-0C65-426A-8FF0-879BD4704101}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {594F2224-AB75-4CD4-AA48-AB009DBCFBFD}
+	EndGlobalSection
+EndGlobal
