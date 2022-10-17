@@ -1,0 +1,6 @@
+Using ASP.NET WEB API project to add/update/delete subject marks for existing students
+
+Background of the problem statement:
+
+Rainbow School wants to create a mobile app which will let teachers update student marks using their phones. To make that work, a WEB API has to be created which will handle web requests from the mobile application. The students and subjects database is already populated. All that is needed to add marks for subjects and students.
+

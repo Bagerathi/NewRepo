@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Classid" />
+          </Key>
+          <Property Name="Classid" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="marks" />
+          </Key>
+          <Property Name="marks" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="StudId" Type="int" />
+          <Property Name="SubjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="StudentName" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Classid" Type="int" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="SubjectName" Type="varchar" MaxLength="50" />
+          <Property Name="classId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Marks__StudId__49C3F6B7">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="StudId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__SubjectId__4AB81AF0">
+          <End Role="subject" Type="Self.subject" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Classid__3B75D760">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject__classId__3A81B327">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="subject" Type="Self.subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="subject">
+              <PropertyRef Name="classId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolModelStoreContainer">
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Marks__StudId__49C3F6B7" Association="Self.FK__Marks__StudId__49C3F6B7">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__SubjectId__4AB81AF0" Association="Self.FK__Marks__SubjectId__4AB81AF0">
+            <End Role="subject" EntitySet="subject" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Classid__3B75D760" Association="Self.FK__Student__Classid__3B75D760">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject__classId__3A81B327" Association="Self.FK__subject__classId__3A81B327">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="subject" EntitySet="subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Classid" />
+          </Key>
+          <Property Name="Classid" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__Classid__3B75D760" FromRole="Class" ToRole="Student" />
+          <NavigationProperty Name="subjects" Relationship="Self.FK__subject__classId__3A81B327" FromRole="Class" ToRole="subject" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="marks" />
+          </Key>
+          <Property Name="marks" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="StudId" Type="Int32" />
+          <Property Name="SubjectId" Type="Int32" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Marks__StudId__49C3F6B7" FromRole="Marks" ToRole="Student" />
+          <NavigationProperty Name="subject" Relationship="Self.FK__Marks__SubjectId__4AB81AF0" FromRole="Marks" ToRole="subject" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Classid" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__Student__Classid__3B75D760" FromRole="Student" ToRole="Class" />
+          <NavigationProperty Name="Marks" Relationship="Self.FK__Marks__StudId__49C3F6B7" FromRole="Student" ToRole="Marks" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classId" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__subject__classId__3A81B327" FromRole="subject" ToRole="Class" />
+          <NavigationProperty Name="Marks" Relationship="Self.FK__Marks__SubjectId__4AB81AF0" FromRole="subject" ToRole="Marks" />
+        </EntityType>
+        <Association Name="FK__Student__Classid__3B75D760">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject__classId__3A81B327">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="subject" Type="Self.subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="subject">
+              <PropertyRef Name="classId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__StudId__49C3F6B7">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="StudId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__SubjectId__4AB81AF0">
+          <End Role="subject" Type="Self.subject" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Marks" EntityType="Self.Mark" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="subjects" EntityType="Self.subject" />
+          <AssociationSet Name="FK__Student__Classid__3B75D760" Association="Self.FK__Student__Classid__3B75D760">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject__classId__3A81B327" Association="Self.FK__subject__classId__3A81B327">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="subject" EntitySet="subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__StudId__49C3F6B7" Association="Self.FK__Marks__StudId__49C3F6B7">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__SubjectId__4AB81AF0" Association="Self.FK__Marks__SubjectId__4AB81AF0">
+            <End Role="subject" EntitySet="subjects" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer" CdmEntityContainer="SchoolEntities">
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="SchoolModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="SchoolModel.Mark">
+              <MappingFragment StoreEntitySet="Marks">
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="StudId" ColumnName="StudId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SchoolModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjects">
+            <EntityTypeMapping TypeName="SchoolModel.subject">
+              <MappingFragment StoreEntitySet="subject">
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
